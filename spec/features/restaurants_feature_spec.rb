@@ -63,6 +63,21 @@ describe 'deleting restaurants' do
   end
 end
 
+describe 'showing the the page of the restaurant' do
+  before do
+    Restaurant.create(name: 'KFC', description: 'Fried chicken and chips')
+  end
+
+  it 'shows the description of the restaurant on its own page when the link is clicked' do
+    visit '/restaurants'
+    click_link 'KFC'
+    expect(page).to have_content "Fried chicken and chips"
+    click_link 'Back to list of restaurants'
+    expect(current_path).to eq '/restaurants'
+  end
+end
+
+
 
 
 
