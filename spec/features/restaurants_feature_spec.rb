@@ -6,7 +6,7 @@ describe 'restaurants' do
     it 'should display a prompt to add a restaurant' do
       visit '/restaurants'
       expect(page).to have_content 'No restaurants yet'
-      expect(page).to have_link 'Add a restaurant'
+      expect(page).to have_link 'Add A Restaurant'
     end
   end
 
@@ -21,5 +21,17 @@ describe 'restaurants' do
       expect(page).not_to have_content('No restaurants yet')
     end
   end
-
 end
+
+describe 'creating restaurants' do
+
+  it 'prompts the user to fill out a form then displays the new restaurant' do
+    visit '/restaurants'
+    click_link 'Add A Restaurant'
+    fill_in 'Name', with: 'KFC'
+    click_button 'Create Restaurant'
+    expect(page).to have_content('KFC')
+    expect(current_path).to eq '/restaurants'
+  end
+end
+
