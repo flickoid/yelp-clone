@@ -14,4 +14,6 @@ describe 'reviewing' do
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content "average"
   end
+
+  
 end
