@@ -71,6 +71,8 @@ describe 'showing the the page of the restaurant' do
   it 'shows the description of the restaurant on its own page when the link is clicked' do
     visit '/restaurants'
     click_link 'KFC'
+    KFC_id = Restaurant.find_by(name: 'KFC').id
+    expect(current_path).to eq "/restaurants/#{ KFC_id }"
     expect(page).to have_content "Fried chicken and chips"
     click_link 'Back to list of restaurants'
     expect(current_path).to eq '/restaurants'
