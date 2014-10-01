@@ -22,6 +22,6 @@ describe 'reviewing' do
   it 'displays an average rating for all reviews' do
     leave_review("so so", "3")
     leave_review("great", "5")
-    expect(page).to have_content("Average rating: 4")
+    expect(page).to have_content("Average rating: ★★★★☆")
   end
 end
