@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Restaurant, :type => :model do
 
+  it "is valid with a name of more than 3 characters" do
+    restaurant = Restaurant.new(name: "Domino's")
+    expect(restaurant).to be_valid
+  end
+
   it "is not valid with a name of less than 3 characters" do
     restaurant = Restaurant.new(name: "al")
     expect(restaurant).not_to be_valid
