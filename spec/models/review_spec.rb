@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Review, :type => :model do
+describe Review, :type => :model do
 
   it "is valid with a rating between 1-5" do
     review = Review.new(rating: 4)
