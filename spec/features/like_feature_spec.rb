@@ -7,7 +7,7 @@ describe 'likes' do
     kfc.reviews.create(thoughts: "ok", rating: 3)
   end
 
-  it 'can like a review updating the like count' do
+  it 'can like a review updating the like count', js: true do
     visit '/restaurants'
     click_link 'Like this review'
     expect(page).to have_content '1 like'
