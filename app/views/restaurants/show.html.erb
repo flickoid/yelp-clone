@@ -1,3 +1,4 @@
 <%= @restaurant.name %>
+<%= image_tag @restaurant.image.url(:medium) %>
 <%= @restaurant.description %>
 <%= link_to 'Back to list of restaurants', restaurants_path %>
