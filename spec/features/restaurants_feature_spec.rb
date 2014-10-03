@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 describe 'restaurants' do
 
@@ -23,7 +24,28 @@ describe 'restaurants' do
   end
 end
 
+describe 'showing the the page of the restaurant' do
+  before do
+    Restaurant.create(name: 'KFC', description: 'Fried chicken and chips')
+  end
+
+  it 'shows the description of the restaurant on its own page when the link is clicked' do
+    visit '/restaurants'
+    click_link 'KFC'
+    KFC_id = Restaurant.find_by(name: 'KFC').id
+    expect(current_path).to eq "/restaurants/#{ KFC_id }"
+    expect(page).to have_content "Fried chicken and chips"
+    click_link 'Back to list of restaurants'
+    expect(current_path).to eq '/restaurants'
+  end
+end
+
 describe 'creating restaurants' do
+
+  before do
+    chris = create(:chris)
+    login_as(chris, :scope => :user)
+  end
 
   context 'a valid restaurant' do
 
@@ -52,6 +74,8 @@ end
 
 describe 'editing restaurants' do
   before do
+    chris = create :chris
+    login_as chris, scope: :user
     Restaurant.create(name: 'KFC')
   end
 
@@ -67,6 +91,8 @@ end
 
 describe 'deleting restaurants' do
   before do
+    chris = create :chris
+    login_as chris, scope: :user
     Restaurant.create(name: 'KFC')
   end
 
@@ -78,21 +104,6 @@ describe 'deleting restaurants' do
   end
 end
 
-describe 'showing the the page of the restaurant' do
-  before do
-    Restaurant.create(name: 'KFC', description: 'Fried chicken and chips')
-  end
-
-  it 'shows the description of the restaurant on its own page when the link is clicked' do
-    visit '/restaurants'
-    click_link 'KFC'
-    KFC_id = Restaurant.find_by(name: 'KFC').id
-    expect(current_path).to eq "/restaurants/#{ KFC_id }"
-    expect(page).to have_content "Fried chicken and chips"
-    click_link 'Back to list of restaurants'
-    expect(current_path).to eq '/restaurants'
-  end
-end
 
 
 
