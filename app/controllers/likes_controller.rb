@@ -1,4 +1,4 @@
-class LikesController < ApplicationController
+.cclass LikesController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def create

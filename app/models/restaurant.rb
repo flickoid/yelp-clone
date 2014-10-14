@@ -1,7 +1,7 @@
 class Restaurant < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   validates :name, length: { minimum: 3 }, uniqueness: true
-    has_attached_file :image, :default_url => "blank.gif", :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :image, :default_url => "blank.gif", :styles => { :medium => "300x300>", :thumb => "100x100>" }
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   has_attached_file :image, :default_url => "blank.gif", :styles => { :medium => "300x300>", :thumb => "100x100>" },

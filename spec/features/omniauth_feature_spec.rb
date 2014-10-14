@@ -5,7 +5,16 @@ describe 'OmniAuth' do
     visit "/users/auth/facebook"
   end
 
-  it 'Signing in with correct credentials' do
+  it 'signing in with correct credentials' do
+    expect(page).to have_content "Welcome to YelpClone"
     expect(page).to have_link "Sign out"
+  end
+
+  it 'should successfully create a user' do
+    expect(User.count).to eq(1)
+  end
+
+  it 'should redirect the user to the restaurant index page' do
+    expect(current_path).to eq '/'
   end
 end
